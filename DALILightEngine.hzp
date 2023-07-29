@@ -1,0 +1,383 @@
+<!DOCTYPE CrossStudio_Project_File>
+<solution Name="DALILightEngine" target="8" version="2">
+  <configuration
+    Name="Debug"
+    c_preprocessor_definitions="DEBUG"
+    gcc_debugging_level="Level 3"
+    gcc_omit_frame_pointer="Yes"
+    gcc_optimization_level="None"
+    hidden="Yes" />
+  <configuration
+    Name="Release"
+    c_preprocessor_definitions="NDEBUG"
+    gcc_debugging_level="None"
+    gcc_omit_frame_pointer="Yes"
+    gcc_optimization_level="Level 1"
+    hidden="Yes" />
+  <configuration
+    Name="THUMB"
+    Platform="ARM"
+    arm_instruction_set="Thumb"
+    arm_library_instruction_set="Thumb"
+    c_preprocessor_definitions="__THUMB"
+    hidden="Yes" />
+  <configuration Name="THUMB Debug" inherited_configurations="THUMB;Debug" />
+  <configuration
+    Name="THUMB Release"
+    inherited_configurations="THUMB;Release" />
+  <project Name="DALILightEngine">
+    <configuration
+      CMSIS_CORE="Yes"
+      Name="Common"
+      Placement="Flash"
+      Target="ATSAMD21G18A"
+      arm_architecture="v6M"
+      arm_core_type="Cortex-M0+"
+      arm_endian="Little"
+      arm_fpu_type="None"
+      arm_interwork="No"
+      arm_linker_heap_size="2048"
+      arm_linker_process_stack_size="1024"
+      arm_linker_stack_size="4096"
+      arm_simulator_memory_simulation_filename="$(TargetsDir)/SAM_D/Simulator/SAM_D_SimulatorMemory_$(HostOS)_$(HostArch)$(HostDLLExt)"
+      arm_simulator_memory_simulation_parameter="SAM D,SAM D21;FLASH,0x00000000,0x00040000,ROM;RAM,0x20000000,0x00008000,RAM"
+      arm_target_debug_interface_type="ADIv5"
+      arm_target_device_name="ATSAMD21G18A"
+      arm_target_interface_type="SWD"
+      arm_target_loader_applicable_loaders="Flash"
+      arm_target_loader_default_loader="Flash"
+      build_output_directory="Output"
+      build_output_file_name="$(OutDir)/$(ProjectName)-$(SFW_MAJ)_$(SFW_MIN)_$(SFW_TST)$(EXE)"
+      c_preprocessor_definitions="NO_SYSTEM_INIT;STARTUP_FROM_RESET;USR_SFW_MAJ=$(SFW_MAJ);USR_SFW_MIN=$(SFW_MIN);USR_SFW_TST=$(SFW_TST)"
+      c_user_include_directories="$(DeviceIncludePath);$(TargetsDir)/SAM_D/CMSIS/Device/Include;$(ProjectDir)/Source;$(ProjectDir)/Source/Application;$(ProjectDir)/Source/Drivers;$(ProjectDir)/Source/DriversConfig;$(ProjectDir)/Source/HAL;$(ProjectDir)/Source/HALConfig;$(ProjectDir)/Source/Main;$(ProjectDir)/Source/MainConfig;$(ProjectDir)/Source/OS;$(ProjectDir)/Source/OSConfig;$(ProjectDir)/Source/Protocols;$(ProjectDir)/Source/ProtocolsConfig;$(ProjectDir)/Source/Services;$(ProjectDir)/Source/Services/CommandHandlers;$(ProjectDir)/Source/ServicesConfig;$(ProjectDir)/Source/ServicesConfig/CommandHandlers;$(ProjectDir)/Source/Utilities"
+      debug_register_definition_file="$(DeviceRegisterDefinitionFile)"
+      gcc_entry_point="Reset_Handler"
+      gcc_wchar_size="16-Bit"
+      linker_memory_map_file="$(DeviceMemoryMapFile)"
+      linker_output_format="hex"
+      linker_printf_fmt_level="long"
+      linker_printf_fp_enabled="No"
+      linker_printf_wchar_enabled="Yes"
+      linker_scanf_fmt_level="long"
+      linker_scanf_fp_enabled="No"
+      linker_section_placement_file="$(StudioDir)/targets/Cortex_M/flash_placement.xml"
+      macros="DeviceIncludePath=$(TargetsDir)/SAM_D/CMSIS/Device/SAMD21/Include;DeviceHeaderFile=$(TargetsDir)/SAM_D/CMSIS/Device/SAMD21/Include/samd21.h;DeviceMemoryMapFile=$(TargetsDir)/SAM_D/XML/ATSAMD21G18A_MemoryMap.xml;DeviceRegisterDefinitionFile=$(TargetsDir)/SAM_D/XML/ATSAMD21G18A_Registers.xml;DeviceSystemFile=$(TargetsDir)/SAM_D/CMSIS/Device/SAMD21/Source/system_samd21.c;DeviceVectorsFile=$(TargetsDir)/SAM_D/Source/ATSAMD21G18A_Vectors.s;DeviceFamily=SAM D;DeviceSubFamily=SAM D21;DeviceLoaderFile=$(TargetsDir)/SAM_D/Loader/SAM_D21_Loader.elf;SFW_MAJ=0;SFW_MIN=2;SFW_TST=0"
+      package_dependencies="SAM_D"
+      project_directory=""
+      project_type="Executable"
+      property_groups_file_path="$(TargetsDir)/SAM_D/XML/property_groups.xml"
+      target_get_partname_script="GetPartName()"
+      target_match_partname_script="MatchPartName(&quot;$(Target)&quot;)"
+      target_reset_script="Reset();"
+      target_trace_initialize_script="EnableTrace(&quot;$(TraceInterfaceType)&quot;)" />
+    <configuration
+      Name="Flash"
+      arm_target_flash_loader_file_path="$(DeviceLoaderFile)" />
+    <folder Name="CMSIS Files">
+      <file file_name="$(DeviceHeaderFile)" />
+    </folder>
+    <folder Name="Script Files">
+      <file file_name="$(TargetsDir)/SAM_D/Scripts/SAM_D_Target.js">
+        <configuration Name="Common" file_type="Reset Script" />
+      </file>
+    </folder>
+    <folder Name="Source">
+      <configuration Name="Common" filter="c;cpp;cxx;cc;h;s;asm;inc" />
+      <folder Name="Application">
+        <folder Name="AscCommonCommands">
+          <file file_name="Source/Application/AscCommonCommands/AscCommonCommands.c" />
+          <file file_name="Source/Application/AscCommonCommands/AscCommonCommands.h" />
+        </folder>
+        <folder Name="DbgAscCommandHandler">
+          <file file_name="Source/Application/DbgAscCommandHandler/DbgAscCommandHandler.c" />
+          <file file_name="Source/Application/DbgAscCommandHandler/DbgAscCommandHandler.h" />
+        </folder>
+        <folder Name="LightControlHandler">
+          <file file_name="Source/Application/LightControlHandler/LightControlHandler.c" />
+          <file file_name="Source/Application/LightControlHandler/LightControlHandler.h" />
+        </folder>
+        <folder Name="StatusManager">
+          <file file_name="Source/Application/StatusManager/StatusManager.c" />
+          <file file_name="Source/Application/StatusManager/StatusManager.h" />
+        </folder>
+      </folder>
+      <folder Name="Drivers">
+        <folder Name="EepromHandler">
+          <file file_name="Source/Drivers/EepromHandler/EepromHandler.c" />
+          <file file_name="Source/Drivers/EepromHandler/EepromHandler.h" />
+        </folder>
+        <folder Name="ManchesterCodec">
+          <file file_name="Source/Drivers/ManchesterCodec/ManchesterCodec.c" />
+          <file file_name="Source/Drivers/ManchesterCodec/ManchesterCodec.h" />
+          <file file_name="Source/Drivers/ManchesterCodec/ManchesterCodec_def.h" />
+        </folder>
+        <folder Name="UsbGenHandler">
+          <file file_name="Source/Drivers/UsbGenHandler/UsbGenHandler.c" />
+          <file file_name="Source/Drivers/UsbGenHandler/UsbGenHandler.h" />
+        </folder>
+      </folder>
+      <folder Name="DriversConfig">
+        <folder Name="EepromHandler">
+          <file file_name="Source/DriversConfig/EepromHandler/EepromHandler_cfg.c" />
+          <file file_name="Source/DriversConfig/EepromHandler/EepromHandler_cfg.h" />
+          <file file_name="Source/DriversConfig/EepromHandler/EepromHandler_prm.h" />
+        </folder>
+        <folder Name="ManchesterCodec">
+          <file file_name="Source/DriversConfig/ManchesterCodec/ManchesterCodec_cfg.c" />
+          <file file_name="Source/DriversConfig/ManchesterCodec/ManchesterCodec_cfg.h" />
+          <file file_name="Source/DriversConfig/ManchesterCodec/ManchesterCodec_prm.h" />
+        </folder>
+        <folder Name="UsbGenHandler">
+          <file file_name="Source/DriversConfig/UsbGenHandler/UsbGenHandler_cfg.c" />
+          <file file_name="Source/DriversConfig/UsbGenHandler/UsbGenHandler_cfg.h" />
+        </folder>
+      </folder>
+      <folder Name="HAL">
+        <folder Name="Clock">
+          <file file_name="Source/HAL/Clock/Clock.c" />
+          <file file_name="Source/HAL/Clock/Clock.h" />
+          <file file_name="Source/HAL/Clock/Clock_def.h" />
+        </folder>
+        <folder Name="DAC">
+          <file file_name="Source/HAL/DAC/Dac.c" />
+          <file file_name="Source/HAL/DAC/Dac.h" />
+          <file file_name="Source/HAL/DAC/Dac_def.h" />
+        </folder>
+        <folder Name="Event">
+          <file file_name="Source/HAL/Event/Event.c" />
+          <file file_name="Source/HAL/Event/Event.h" />
+          <file file_name="Source/HAL/Event/Event_def.h" />
+        </folder>
+        <folder Name="GPIO">
+          <file file_name="Source/HAL/GPIO/Gpio.c" />
+          <file file_name="Source/HAL/GPIO/Gpio.h" />
+          <file file_name="Source/HAL/GPIO/Gpio_def.h" />
+        </folder>
+        <folder Name="I2C">
+          <file file_name="Source/HAL/I2C/I2c.c" />
+          <file file_name="Source/HAL/I2C/I2c.h" />
+          <file file_name="Source/HAL/I2C/I2c_def.h" />
+        </folder>
+        <folder Name="Interrupt">
+          <file file_name="Source/HAL/Interrupt/Interrupt.c" />
+          <file file_name="Source/HAL/Interrupt/Interrupt.h" />
+        </folder>
+        <folder Name="PowerManager">
+          <file file_name="Source/HAL/PowerManager/PowerManager.c" />
+          <file file_name="Source/HAL/PowerManager/PowerManager.h" />
+          <file file_name="Source/HAL/PowerManager/PowerManager_def.h" />
+        </folder>
+        <folder Name="SerialNumber">
+          <file file_name="Source/HAL/SerialNumber/SerialNumber.c" />
+          <file file_name="Source/HAL/SerialNumber/SerialNumber.h" />
+        </folder>
+        <folder Name="SystemTick">
+          <file file_name="Source/HAL/SystemTick/SystemTick.c" />
+          <file file_name="Source/HAL/SystemTick/SystemTick.h" />
+          <file file_name="Source/HAL/SystemTick/SystemTick_def.h" />
+        </folder>
+        <folder Name="Timers">
+          <configuration Name="THUMB Debug" build_exclude_from_build="No" />
+          <file file_name="Source/HAL/Timers/Timers.c" />
+          <file file_name="Source/HAL/Timers/Timers.h" />
+          <file file_name="Source/HAL/Timers/Timers_def.h" />
+        </folder>
+        <folder Name="USB">
+          <file file_name="Source/HAL/USB/Usb.c" />
+          <file file_name="Source/HAL/USB/Usb.h" />
+        </folder>
+      </folder>
+      <folder Name="HALConfig">
+        <folder Name="Clock">
+          <file file_name="Source/HALConfig/Clock/Clock_cfg.c" />
+          <file file_name="Source/HALConfig/Clock/Clock_cfg.h" />
+        </folder>
+        <folder Name="DAC">
+          <file file_name="Source/HALConfig/DAC/Dac_cfg.c" />
+          <file file_name="Source/HALConfig/DAC/Dac_cfg.h" />
+        </folder>
+        <folder Name="Event">
+          <file file_name="Source/HALConfig/Event/Event_cfg.c" />
+          <file file_name="Source/HALConfig/Event/Event_cfg.h" />
+        </folder>
+        <folder Name="GPIO">
+          <file file_name="Source/HALConfig/GPIO/Gpio_cfg.c" />
+          <file file_name="Source/HALConfig/GPIO/Gpio_cfg.h" />
+        </folder>
+        <folder Name="I2C">
+          <file file_name="Source/HALConfig/I2C/I2c_cfg.c" />
+          <file file_name="Source/HALConfig/I2C/I2c_cfg.h" />
+        </folder>
+        <folder Name="Interrupt">
+          <file file_name="Source/HALConfig/Interrupt/Interrupt_prm.h" />
+        </folder>
+        <folder Name="PowerManager">
+          <file file_name="Source/HALConfig/PowerManager/PowerManager_cfg.c" />
+          <file file_name="Source/HALConfig/PowerManager/PowerManager_cfg.h" />
+        </folder>
+        <folder Name="SystemTick">
+          <file file_name="Source/HALConfig/SystemTick/SystemTick_cfg.c" />
+          <file file_name="Source/HALConfig/SystemTick/SystemTick_cfg.h" />
+          <file file_name="Source/HALConfig/SystemTick/SystemTick_prm.h" />
+        </folder>
+        <folder Name="Timers">
+          <file file_name="Source/HALConfig/Timers/Timers_cfg.c" />
+          <file file_name="Source/HALConfig/Timers/Timers_cfg.h" />
+        </folder>
+        <folder Name="USB">
+          <file file_name="Source/HALConfig/USB/Usb_cfg.c" />
+          <file file_name="Source/HALConfig/USB/Usb_cfg.h" />
+        </folder>
+      </folder>
+      <folder Name="Main">
+        <file file_name="Source/Main/Main.c" />
+        <file file_name="Source/Main/Main.h" />
+        <file file_name="Source/Main/Main_def.h" />
+      </folder>
+      <folder Name="MainConfig">
+        <file file_name="Source/MainConfig/Main_cfg.c" />
+        <file file_name="Source/MainConfig/Main_cfg.h" />
+      </folder>
+      <folder Name="OS">
+        <folder Name="QueueManager">
+          <file file_name="Source/OS/QueueManager/QueueManager.c" />
+          <file file_name="Source/OS/QueueManager/QueueManager.h" />
+          <file file_name="Source/OS/QueueManager/QueueManager_def.h" />
+        </folder>
+        <folder Name="SystemControlManager">
+          <file file_name="Source/OS/SystemControlManager/SystemControlManager.c" />
+          <file file_name="Source/OS/SystemControlManager/SystemControlManager.h" />
+          <file file_name="Source/OS/SystemControlManager/SystemControlManager_def.h" />
+        </folder>
+        <folder Name="TaskManager">
+          <file file_name="Source/OS/TaskManager/TaskManager.c" />
+          <file file_name="Source/OS/TaskManager/TaskManager.h" />
+          <file file_name="Source/OS/TaskManager/TaskManager_def.h" />
+        </folder>
+      </folder>
+      <folder Name="OSConfig">
+        <folder Name="QueueManager">
+          <file file_name="Source/OSConfig/QueueManager/QueueManager_cfg.c" />
+          <file file_name="Source/OSConfig/QueueManager/QueueManager_cfg.h" />
+        </folder>
+        <folder Name="SystemControlManager">
+          <file file_name="Source/OSConfig/SystemControlManager/SystemControlManager_cfg.c" />
+          <file file_name="Source/OSConfig/SystemControlManager/SystemControlManager_cfg.h" />
+          <file file_name="Source/OSConfig/SystemControlManager/SystemControlManager_prm.h" />
+        </folder>
+        <folder Name="TaskManager">
+          <file file_name="Source/OSConfig/TaskManager/TaskManager_cfg.c" />
+          <file file_name="Source/OSConfig/TaskManager/TaskManager_cfg.h" />
+          <file file_name="Source/OSConfig/TaskManager/TaskManager_prm.h" />
+        </folder>
+      </folder>
+      <folder Name="Protocols">
+        <folder Name="DALIMessageHandler">
+          <folder Name="ExtendedCommands">
+            <file file_name="Source/Protocols/DALIMessageHandler/ExtendedCommands/ExtendedCommands.c" />
+            <file file_name="Source/Protocols/DALIMessageHandler/ExtendedCommands/ExtendedCommands.h" />
+          </folder>
+          <folder Name="NormalCommands">
+            <file file_name="Source/Protocols/DALIMessageHandler/NormalCommands/NormalCommands.c" />
+            <file file_name="Source/Protocols/DALIMessageHandler/NormalCommands/NormalCommands.h" />
+          </folder>
+          <folder Name="SpecialCommands">
+            <file file_name="Source/Protocols/DALIMessageHandler/SpecialCommands/SpecialCommands.c" />
+            <file file_name="Source/Protocols/DALIMessageHandler/SpecialCommands/SpecialCommands.h" />
+          </folder>
+          <file file_name="Source/Protocols/DALIMessageHandler/DALIMessageHandler.c" />
+          <file file_name="Source/Protocols/DALIMessageHandler/DALIMessageHandler.h" />
+          <file file_name="Source/Protocols/DALIMessageHandler/DALIMessageHandler_def.h" />
+        </folder>
+      </folder>
+      <folder Name="ProtocolsConfig">
+        <folder Name="DALIMessageHandler">
+          <file file_name="Source/ProtocolsConfig/DALIMessageHandler/DALIMessageHandler_cfg.c" />
+          <file file_name="Source/ProtocolsConfig/DALIMessageHandler/DALIMessageHandler_cfg.h" />
+          <file file_name="Source/ProtocolsConfig/DALIMessageHandler/DALIMessageHandler_prm.h" />
+        </folder>
+      </folder>
+      <folder Name="Services">
+        <folder Name="CommandHandlers">
+          <folder Name="AsciiCommandHandler">
+            <file file_name="Source/Services/CommandHandlers/AsciiCommandHandler/AsciiCommandHandler.c" />
+            <file file_name="Source/Services/CommandHandlers/AsciiCommandHandler/AsciiCommandHandler.h" />
+            <file file_name="Source/Services/CommandHandlers/AsciiCommandHandler/AsciiCommandHandler_def.h" />
+          </folder>
+        </folder>
+        <folder Name="DebugManager">
+          <file file_name="Source/Services/DebugManager/DebugManager.c" />
+          <file file_name="Source/Services/DebugManager/DebugManager.h" />
+        </folder>
+        <folder Name="FaultHandler">
+          <file file_name="Source/Services/FaultHandler/FaultHandler.c" />
+          <file file_name="Source/Services/FaultHandler/FaultHandler.h" />
+        </folder>
+        <folder Name="HardwareDebug">
+          <file file_name="Source/Services/HardwareDebug/HardwareDebug.c" />
+          <file file_name="Source/Services/HardwareDebug/HardwareDebug.h" />
+        </folder>
+        <folder Name="ManufInfo">
+          <file file_name="Source/Services/ManufInfo/ManufInfo.c" />
+          <file file_name="Source/Services/ManufInfo/ManufInfo.h" />
+        </folder>
+        <folder Name="ParameterManager">
+          <file file_name="Source/Services/ParameterManager/ParameterManager.c" />
+          <file file_name="Source/Services/ParameterManager/ParameterManager.h" />
+          <file file_name="Source/Services/ParameterManager/ParameterManager_def.h" />
+        </folder>
+        <folder Name="StateExeuctionEngine">
+          <file file_name="Source/Services/StateExecutionEngine/StateExecutionEngine.c" />
+          <file file_name="Source/Services/StateExecutionEngine/StateExecutionEngine.h" />
+        </folder>
+      </folder>
+      <folder Name="ServicesConfig">
+        <folder Name="CommandHandlers">
+          <folder Name="AsciiCommandHandler">
+            <file file_name="Source/ServicesConfig/CommandHandlers/AsciiCommandHandler/AsciiCommandHandler_cfg.c" />
+            <file file_name="Source/ServicesConfig/CommandHandlers/AsciiCommandHandler/AsciiCommandHandler_cfg.h" />
+            <file file_name="Source/ServicesConfig/CommandHandlers/AsciiCommandHandler/AsciiCommandHandler_prm.h" />
+          </folder>
+        </folder>
+        <folder Name="DebugManager">
+          <file file_name="Source/ServicesConfig/DebugManager/DebugManager_prm.h" />
+        </folder>
+        <folder Name="FaultHandler">
+          <file file_name="Source/ServicesConfig/FaultHandler/FaultHandler_cfg.c" />
+          <file file_name="Source/ServicesConfig/FaultHandler/FaultHandler_cfg.h" />
+        </folder>
+        <folder Name="HardwareDebug">
+          <file file_name="Source/ServicesConfig/HardwareDebug/HardwareDebug_prm.h" />
+        </folder>
+        <folder Name="ManufInfo">
+          <file file_name="Source/ServicesConfig/ManufInfo/ManufInfo_prm.h" />
+        </folder>
+        <folder Name="ParameterManager">
+          <file file_name="Source/ServicesConfig/ParameterManager/ParameterManager_cfg.c" />
+          <file file_name="Source/ServicesConfig/ParameterManager/ParameterManager_cfg.h" />
+          <file file_name="Source/ServicesConfig/ParameterManager/ParameterManager_prm.h" />
+        </folder>
+      </folder>
+      <folder Name="SystemDefines">
+        <file file_name="Source/SystemDefines/SystemDefines_prm.h" />
+      </folder>
+      <folder Name="Types">
+        <file file_name="Source/Types/Types.h" />
+      </folder>
+      <folder Name="Utilities">
+        <folder Name="CRC16">
+          <configuration Name="THUMB Debug" build_exclude_from_build="No" />
+          <file file_name="Source/Utilities/CRC16/Crc16.c" />
+          <file file_name="Source/Utilities/CRC16/Crc16.h" />
+        </folder>
+      </folder>
+    </folder>
+    <folder Name="System Files">
+      <file file_name="$(DeviceVectorsFile)">
+        <configuration Name="Common" file_type="Assembly" />
+      </file>
+      <file file_name="$(TargetsDir)/SAM_D/Source/SAM_D_Startup.s" />
+      <file file_name="$(StudioDir)/source/thumb_crt0.s" />
+    </folder>
+  </project>
+</solution>
